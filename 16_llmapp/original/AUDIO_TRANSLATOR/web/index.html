@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Realtime Translator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>リアルタイム翻訳（翻訳＋用語説明＋読み上げ）</h1>
+
+  <div class="box">
+    <div class="row">
+      <button id="btnStart">🎤 開始</button>
+      <button id="btnStop" disabled>■ 停止</button>
+
+      <select id="direction">
+        <option value="AUTO">自動（おすすめ）</option>
+        <option value="JA2EN">日本語 → 英語</option>
+        <option value="EN2JA">英語 → 日本語</option>
+      </select>
+
+      <button id="btnSave" disabled>⬇ 保存（txt）</button>
+      <button id="btnClear">🧹 クリア</button>
+
+      <label class="small speak-toggle">
+        <input type="checkbox" id="autoSpeak">
+        翻訳を自動で読み上げ
+      </label>
+
+      <button id="btnSpeak" disabled>🔊 翻訳を読み上げ</button>
+      <button id="btnSpeakStop" disabled>⏹ 読み上げ停止</button>
+    </div>
+
+    <div class="small">
+      ※ Chrome/Edge 推奨（音声認識を使用）<br>
+      ※ 通常は保存しません。必要な時だけ「保存」でローカルに txt をダウンロードできます。<br>
+      ※ 読み上げはブラウザ標準機能（端末の音量・音声設定に依存）です。
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="box">
+      <h3>字幕（文字起こし）</h3>
+      <div id="live" class="live"></div>
+      <textarea id="transcript" readonly></textarea>
+    </div>
+
+    <div class="box">
+      <h3>翻訳</h3>
+      <textarea id="translated" readonly></textarea>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>用語説明</h3>
+    <div class="small">検出された重要語がここに表示されます（累積）。</div>
+    <div id="terms" class="terms"></div>
+  </div>
+
+  <script src="/main.js"></script>
+</body>
+</html>
